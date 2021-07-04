@@ -21,6 +21,7 @@ class MainScene extends Phaser.Scene {
       down: 'down',
       left: 'left',
       right: 'right',
+      shift: 'shift', 
       s: 's',
       w: 'w',
       a: 'a',
@@ -39,7 +40,7 @@ class MainScene extends Phaser.Scene {
   }
 
   update(time, delta) {
-    this.player.input(this.keys);
+    this.player.input(this.keys, delta);
     this.player.move(delta);
 
     for (const bullet of MainScene.bullets) {

@@ -1,5 +1,5 @@
 class Bullet {
-  speed = 10;
+  speed = 5;
   dir = new Phaser.Math.Vector2(0, 0);
 
   constructor(scene) {
@@ -18,11 +18,10 @@ class Bullet {
     const newPos = pos.add(moveVector);
     this.gameObject.setPosition(newPos.x, newPos.y);
 
-    // 화면 안에 있는지 확인하는 코드
+    // 화면나가면 총알 죽음
     if (Game.mainCam.worldView.contains(this.gameObject.x, this.gameObject.y)) {
-      console.log("i can see");
     } else {
-      console.log("i can not see");
+      this.gameObject.destroy();
     }
   }
 }
