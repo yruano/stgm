@@ -10,16 +10,17 @@ function spawnBullet(self, xDir, yDir) {
 
 //플레이어 움직임
 class Player {
-  speed = 7;
+  speed = 700;
   dir = new Phaser.Math.Vector2(0, 0);
   bullettime = 0;
   atkspeed = 0.2;
+  originalspeed = 700
   constructor(keys) {
     this.gameObject = Game.scene.add.rectangle(
       Game.center.x,
       Game.center.y,
       20, 20,
-      0x000000
+      0xffffff
     );
   }
 
@@ -58,9 +59,9 @@ class Player {
       this.dir.x = 1;
     }
     if (keys.shift.isDown) {
-      this.speed = 3;
+      this.speed = 300;
     } else {
-      this.speed = 7;
+      this.speed = this.originalspeed;
     }
 
     if ((keys.up.isDown && keys.down.isDown)
@@ -75,7 +76,7 @@ class Player {
 
   move(delta) {
     const pos = new Phaser.Math.Vector2(this.gameObject.x, this.gameObject.y);
-    const moveVector = this.dir.normalize().scale(this.speed);
+    const moveVector = this.dir.normalize().scale(this.speed * delta / 1000);
     const nextPos = pos.add(moveVector);
     this.gameObject.setPosition(nextPos.x, nextPos.y);
   }

@@ -1,5 +1,5 @@
 class Bullet {
-  speed = 5;
+  speed = 350;
   dir = new Phaser.Math.Vector2(0, 0);
 
   constructor(scene) {
@@ -7,14 +7,14 @@ class Bullet {
       Game.center.x,
       Game.center.y,
       10, 10,
-      0x000000
+      0xffffff
     );
   }
 
 
   move(delta) {
     const pos = new Phaser.Math.Vector2(this.gameObject.x, this.gameObject.y);
-    const moveVector = this.dir.normalize().scale(this.speed);
+    const moveVector = this.dir.normalize().scale(this.speed * delta / 1000);
     const newPos = pos.add(moveVector);
     this.gameObject.setPosition(newPos.x, newPos.y);
 
