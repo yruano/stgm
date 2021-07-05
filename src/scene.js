@@ -29,6 +29,8 @@ class MainScene extends Phaser.Scene {
     });
 
     this.player = new Player(this.keys);
+
+    new Enemy(this);
   }
 
   preload() {

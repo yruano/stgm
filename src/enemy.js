@@ -7,5 +7,5 @@ class Enemy {
         50, 50,
         0xffffff
         );
-    }    
+    }   
 }
