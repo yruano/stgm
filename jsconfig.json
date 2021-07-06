@@ -8,3 +8,5 @@
         "src/**/*"
     ]
 }
+ //git config --global user.name hgnaseel
+ //git config --global user.email hgnaseel@gmail.com
