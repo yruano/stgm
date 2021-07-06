@@ -1,7 +1,11 @@
 class Game {
   static scene;
   static center;
+  static spawn;
   static mainCam;
+  static topCam;
+  static leftCam;
+  static rightCam;
 }
 
 //키 설정
@@ -15,6 +19,17 @@ class MainScene extends Phaser.Scene {
       y: this.cameras.main.centerY,
     }
     Game.mainCam = this.cameras.main;
+    Game.spawn = {
+      topx : this.cameras.top.spawnX,
+      topy : this.cameras.top.spawnY,
+      leftx : this.cameras.left.spawnX,
+      lefty : this.cameras.left.spawnY,
+      rightx : this.cameras.right.rightX,
+      righty : this.cameras.right.rightY,
+    }
+    Game.topCam = this.cameras.top;
+    Game.leftCam = this.cameras.left;
+    Game.rightCam = this.cameras.right;
 
     this.keys = this.input.keyboard.addKeys({
       up: 'up',
