@@ -1,11 +1,28 @@
 class Game {
   static scene;
   static center;
-  static spawn;
   static mainCam;
-  static topCam;
-  static leftCam;
-  static rightCam;
+}
+
+//스폰 랜덤함수
+function getRandomXY() {
+  let side = Math.floor(Math.random() * 3);
+  if (side == 0) {// 왼쪽
+    return {
+      x: 0,
+      y: Math.floor(Math.random() * 1080)
+    }
+  } else if (side == 1){// 오른쪽
+    return {
+      x: 1920,
+      y: Math.floor(Math.random() * 1080)
+    }
+  }else {// 위쪽
+    return {
+      x: Math.floor(Math.random() * 1920),
+      y: 0
+    }
+  }
 }
 
 //키 설정
@@ -18,25 +35,15 @@ class MainScene extends Phaser.Scene {
       x: this.cameras.main.centerX,
       y: this.cameras.main.centerY,
     }
+
     Game.mainCam = this.cameras.main;
-    Game.spawn = {
-      topx : this.cameras.top.spawnX,
-      topy : this.cameras.top.spawnY,
-      leftx : this.cameras.left.spawnX,
-      lefty : this.cameras.left.spawnY,
-      rightx : this.cameras.right.rightX,
-      righty : this.cameras.right.rightY,
-    }
-    Game.topCam = this.cameras.top;
-    Game.leftCam = this.cameras.left;
-    Game.rightCam = this.cameras.right;
 
     this.keys = this.input.keyboard.addKeys({
       up: 'up',
       down: 'down',
       left: 'left',
       right: 'right',
-      shift: 'shift', 
+      shift: 'shift',
       s: 's',
       w: 'w',
       a: 'a',
@@ -44,8 +51,6 @@ class MainScene extends Phaser.Scene {
     });
 
     this.player = new Player(this.keys);
-
-    new Enemy(this);
   }
 
   preload() {
@@ -59,6 +64,7 @@ class MainScene extends Phaser.Scene {
   update(time, delta) {
     this.player.input(this.keys, delta);
     this.player.move(delta);
+    spwn(delta, this);
 
     for (const bullet of MainScene.bullets) {
       bullet.move(delta);

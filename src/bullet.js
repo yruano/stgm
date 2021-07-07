@@ -1,3 +1,4 @@
+// 총알 클래스
 class Bullet {
   speed = 350;
   dir = new Phaser.Math.Vector2(0, 0);
@@ -11,7 +12,7 @@ class Bullet {
     );
   }
 
-
+//충알 움직임
   move(delta) {
     const pos = new Phaser.Math.Vector2(this.gameObject.x, this.gameObject.y);
     const moveVector = this.dir.normalize().scale(this.speed * delta / 1000);

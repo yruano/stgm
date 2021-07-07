@@ -8,7 +8,7 @@ function spawnBullet(self, xDir, yDir) {
   MainScene.bullets.push(bullet);
 }
 
-//플레이어 움직임
+//플레이어 클래스
 class Player {
   speed = 700;
   dir = new Phaser.Math.Vector2(0, 0);
@@ -24,7 +24,9 @@ class Player {
     );
   }
 
+  // 플레이어 움직임 + 총알 발사 키다운
   input(keys, delta) {
+    // 총알 발사 키다운 + 총알 발사 시간조절
     this.bullettime += delta;
     if (this.bullettime / 1000 >= this.atkspeed) {
       if (keys.s.isDown) {
@@ -45,7 +47,7 @@ class Player {
       }
 
     }
-
+// 플레이어 움직임
     if (keys.up.isDown) {
       this.dir.y = -1;
     }
@@ -74,6 +76,7 @@ class Player {
     }
   }
 
+  //플레이어 움직임
   move(delta) {
     const pos = new Phaser.Math.Vector2(this.gameObject.x, this.gameObject.y);
     const moveVector = this.dir.normalize().scale(this.speed * delta / 1000);
