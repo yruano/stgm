@@ -28,6 +28,7 @@ function getRandomXY() {
 //키 설정
 class MainScene extends Phaser.Scene {
   static bullets = [];
+  static enemys = [];
 
   init(data) {
     Game.scene = this;
@@ -68,6 +69,10 @@ class MainScene extends Phaser.Scene {
 
     for (const bullet of MainScene.bullets) {
       bullet.move(delta);
+    }
+    
+    for (const enemy of MainScene.enemys) {
+      enemy.move(delta);
     }
   }
 }
