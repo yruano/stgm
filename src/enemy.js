@@ -15,6 +15,12 @@ class Enemy {
         const moveVector = this.dir.normalize().scale(this.speed * delta / 1000);
         const newPos = pos.add(moveVector);
         this.gameObject.setPosition(newPos.x, newPos.y);
+
+        //화면나가면 적 죽음
+        if (Game.mainCam.worldView.contains(this.gameObject.x, this.gameObject.y)) {
+        } else {
+          this.gameObject.destroy();
+        }
     }
 }
 // 적 스폰 시간
@@ -56,4 +62,12 @@ function distance(vec) {
 
 function direction(cur, to) {
     return normalize(new Phaser.Math.Vector2(to.x - cur.x, to.y - cur.y));
+}
+
+function enmeydie() {
+    for(var e = 0; e < MainScene.enemys; c++){
+        for(var b = 0; b < MainScene.bullets; b++){
+            
+        }
+    }
 }
